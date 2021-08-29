@@ -6,24 +6,25 @@ import Rating from '@material-ui/lab';
 
 import useStyles from './styles'
 
-/* Insert Api key  */
-
-const Map = () => {
+const Map = ({setCoordinates,setBounds,coordinates}) => {
     const classes = useStyles();
     const isMobile = useMediaQuery('(min-width:600px)');
 
-    const coordinates = {lat:-1.2833,lng:36.8167}
+    // const coordinates = {lat:0,lng:0}
 
     return (
         <div className={classes.mapContainer}>
             <GoogleMapReact
-                bootstrapURLKeys={{ key:''}}
+                bootstrapURLKeys={{ key:'api key here'}}
                 defaultCenter={coordinates}
                 center={coordinates}
                 defaultZoom={14}
                 margin={[50,50,50,50]}
                 options={''}
-                onChange={''}
+                onChange={(e)=>{
+                    setCoordinates({ lat: e.center.lat,lng:e.center.lng})
+                    setBounds({ne:e.marginBounds.ne,sw:e.marginBounds.sw})
+                }}
                 onChildClick={''}
             >
                 

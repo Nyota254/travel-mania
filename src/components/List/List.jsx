@@ -4,10 +4,8 @@ import useStyles from './styles'
 import { map } from 'bluebird';
 import PlaceDetails from '../PlaceDetails/PlaceDetails'
 
-const List = ({places,childClicked,isLoading}) => {
+const List = ({places,childClicked,isLoading,type,setType,rating,setRating}) => {
     const classes =useStyles();
-    const [type,setType] = useState('restaurants')
-    const [rating,setRating] = useState('')
     const [elRefs,setElRefs] = useState([])
 
     // console.log({childClicked});
@@ -17,8 +15,7 @@ const List = ({places,childClicked,isLoading}) => {
         setElRefs(refs)
         }
     },[places])
-
-    console.log(elRefs)
+    
     return (
         <div className={classes.container}>
             <Typography variant="h4">Restaurants,Hotels and Attractions</Typography>
@@ -39,10 +36,10 @@ const List = ({places,childClicked,isLoading}) => {
             <FormControl className={classes.formControl}>
                 <InputLabel>Rating</InputLabel>
                 <Select value={rating} onChange={(e)=>setRating(e.target.value)}>
-                    <MenuItem value={0}></MenuItem>
+                    <MenuItem value={0}>All</MenuItem>
                     <MenuItem value={3}>Above 3.0</MenuItem>
                     <MenuItem value={4}>Above 4.0</MenuItem>
-                    <MenuItem value={5}>Above 4.5</MenuItem>
+                    <MenuItem value={4.5}>Above 4.5</MenuItem>
                 </Select>
             </FormControl>
             <Grid container spacing={3} className={classes.list}>
